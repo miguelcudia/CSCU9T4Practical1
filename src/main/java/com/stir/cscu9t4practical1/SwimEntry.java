@@ -4,14 +4,12 @@ import java.util.Calendar;
 
 // Subclass for swimming training sessions
 public class SwimEntry extends Entry {
-    private int laps; // Number of laps swum
     private String where; // Location of the swim
 
     // Constructor
     public SwimEntry(String name, int day, int month, int year, int hour, int minute, int second, float distance,
             String where) {
         super(name, day, month, year, hour, minute, second, distance);
-        this.laps = laps;
         this.where = where;
     }
 

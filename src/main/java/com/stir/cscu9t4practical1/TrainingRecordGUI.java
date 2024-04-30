@@ -3,9 +3,7 @@ package com.stir.cscu9t4practical1;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
 import javax.swing.*;
-import java.lang.Number;
 
 public class TrainingRecordGUI extends JFrame implements ActionListener {
 
@@ -40,7 +38,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
     private JTextArea outputArea = new JTextArea(5, 50);
 
     public static void main(String[] args) {
-        TrainingRecordGUI applic = new TrainingRecordGUI();
+        TrainingRecordGUI aplic = new TrainingRecordGUI();
     } // main
 
     // set up the GUI
