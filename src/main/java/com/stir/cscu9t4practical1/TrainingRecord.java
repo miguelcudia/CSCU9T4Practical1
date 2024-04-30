@@ -37,6 +37,7 @@ public class TrainingRecord {
         return result;
     } // lookupEntry
 
+    // look up entries
     public String lookupEntries(int day, int month, int year) {
         StringBuilder result = new StringBuilder();
         boolean entriesFound = false;
@@ -74,6 +75,7 @@ public class TrainingRecord {
         return result.toString();
     }
 
+    // To remove entries
     public boolean removeEntry(String name, int day, int month, int year) {
         for (int i = 0; i < tr.size(); i++) {
             Entry entry = tr.get(i);

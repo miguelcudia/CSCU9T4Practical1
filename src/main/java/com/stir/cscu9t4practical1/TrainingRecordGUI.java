@@ -38,7 +38,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
     private JTextArea outputArea = new JTextArea(5, 50);
 
     public static void main(String[] args) {
-        TrainingRecordGUI aplic = new TrainingRecordGUI();
+        new TrainingRecordGUI();
     } // main
 
     // set up the GUI
@@ -75,7 +75,6 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         lookUpByDate.addActionListener(this);
         add(findAllByDate);
         findAllByDate.addActionListener(this);
-        // Add ActionListener for the new button
         add(addRunEntry);
         addRunEntry.addActionListener(this);
         add(addSwimEntry);
@@ -142,6 +141,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         return message;
     }
 
+    // Method to look up entries
     public String lookupEntry() {
         int m = Integer.parseInt(month.getText());
         int d = Integer.parseInt(day.getText());
@@ -163,6 +163,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         return entries;
     }
 
+    // To clear fields
     public void blankDisplay() {
         name.setText("");
         day.setText("");
@@ -174,8 +175,8 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         dist.setText("");
 
     }// blankDisplay
-     // Fills the input fields on the display for testing purposes only
 
+    // Fills the input fields on the display for testing purposes only
     public void fillDisplay(Entry ent) {
         name.setText(ent.getName());
         day.setText(String.valueOf(ent.getDay()));

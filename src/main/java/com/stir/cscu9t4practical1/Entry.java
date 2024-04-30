@@ -78,6 +78,7 @@ public class Entry {
     return dateAndTime;
   }
 
+  // Getter method for getEntry
   public String getEntry() {
     String result = getName() + " ran " + getDistance() + " km in "
         + getHour() + ":" + getMin() + ":" + getSec() + " on "
