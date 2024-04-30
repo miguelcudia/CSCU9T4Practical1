@@ -28,6 +28,12 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
     private JButton addR = new JButton("Add");
     private JButton lookUpByDate = new JButton("Look Up");
     private JButton findAllByDate = new JButton("Find All By Date"); // New button
+    // Add buttons for different entry types
+    private JButton addRunEntry = new JButton("Add Run Entry");
+    private JButton addSwimEntry = new JButton("Add Swim Entry");
+    private JButton addCycleEntry = new JButton("Add Cycle Entry");
+    // Add remove button
+    private JButton removeEntry = new JButton("Remove");
 
     private TrainingRecord myAthletes = new TrainingRecord();
 
@@ -70,10 +76,19 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         add(lookUpByDate);
         lookUpByDate.addActionListener(this);
         add(findAllByDate);
-        findAllByDate.addActionListener(this); // Add ActionListener for the new button
+        findAllByDate.addActionListener(this);
+        // Add ActionListener for the new button
+        add(addRunEntry);
+        addRunEntry.addActionListener(this);
+        add(addSwimEntry);
+        addSwimEntry.addActionListener(this);
+        add(addCycleEntry);
+        addCycleEntry.addActionListener(this);
+        add(removeEntry);
+        removeEntry.addActionListener(this);
         add(outputArea);
         outputArea.setEditable(false);
-        setSize(720, 200);
+        setSize(720, 250);
         setVisible(true);
         blankDisplay();
 
@@ -82,34 +97,50 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 
     } // constructor
 
-    // listen for and respond to GUI events
+    // Modified actionPerformed method to handle different entry types
     public void actionPerformed(ActionEvent event) {
         String message = "";
-        if (event.getSource() == addR) {
-            message = addEntry("generic");
-        }
-        if (event.getSource() == lookUpByDate) {
-            message = lookupEntry();
-        } else if (event.getSource() == findAllByDate) {
-            message = findAllEntriesByDate();
+        if (event.getSource() == removeEntry) {
+            message = removeEntry();
+        } else if (event.getSource() == addRunEntry) {
+            message = addEntry("run");
+        } else if (event.getSource() == addSwimEntry) {
+            message = addEntry("swim");
+        } else if (event.getSource() == addCycleEntry) {
+            message = addEntry("cycle");
         }
         outputArea.setText(message);
         blankDisplay();
-    } // actionPerformed
+    }
 
-    public String addEntry(String what) {
+    // Modified addEntry method to handle different entry types
+    public String addEntry(String type) {
         String message = "Record added\n";
-        System.out.println("Adding " + what + " entry to the records");
+        System.out.println("Adding " + type + " entry to the records");
+        // Depending on the type, create the corresponding entry object
+        if (type.equals("run")) {
+            // Create RunEntry object
+        } else if (type.equals("swim")) {
+            // Create SwimEntry object
+        } else if (type.equals("cycle")) {
+            // Create CycleEntry object
+        }
+        // Add the entry to the training record
+        return message;
+    }
+
+    // Implement removeEntry method to remove an entry
+    public String removeEntry() {
+        String message = "Record removed\n";
         String n = name.getText();
         int m = Integer.parseInt(month.getText());
         int d = Integer.parseInt(day.getText());
         int y = Integer.parseInt(year.getText());
-        float km = java.lang.Float.parseFloat(dist.getText());
-        int h = Integer.parseInt(hours.getText());
-        int mm = Integer.parseInt(mins.getText());
-        int s = Integer.parseInt(secs.getText());
-        Entry e = new Entry(n, d, m, y, h, mm, s, km);
-        myAthletes.addEntry(e);
+        // Call TrainingRecord method to remove entry
+        boolean removed = myAthletes.removeEntry(n, d, m, y);
+        if (!removed) {
+            message = "No record found for the given details";
+        }
         return message;
     }
 

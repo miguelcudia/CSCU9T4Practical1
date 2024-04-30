@@ -12,8 +12,18 @@ public class TrainingRecord {
 
     // add a record to the list
     public void addEntry(Entry e) {
-        tr.add(e);
-    } // addClass
+        // Check if an entry for the same person on the same day already exists
+        boolean isDuplicate = tr.stream()
+                .anyMatch(entry -> entry.getName().equals(e.getName()) &&
+                        entry.getDay() == e.getDay() &&
+                        entry.getMonth() == e.getMonth() &&
+                        entry.getYear() == e.getYear());
+
+        // If it's not a duplicate, add the entry
+        if (!isDuplicate) {
+            tr.add(e);
+        }
+    }
 
     // look up the entry of a given day and month
     public String lookupEntry(int d, int m, int y) {
@@ -26,6 +36,24 @@ public class TrainingRecord {
         }
         return result;
     } // lookupEntry
+
+    public String lookupEntries(int day, int month, int year) {
+        StringBuilder result = new StringBuilder();
+        boolean entriesFound = false;
+
+        for (Entry entry : tr) {
+            if (entry.getDay() == day && entry.getMonth() == month && entry.getYear() == year) {
+                result.append(entry.getEntry());
+                entriesFound = true;
+            }
+        }
+
+        if (!entriesFound) {
+            return "Sorry couldn't find anything for this date";
+        }
+
+        return result.toString();
+    }
 
     // Method to retrieve all entries on a given date in a single string
     public String getAllEntriesByDate(int d, int m, int y) {
@@ -44,6 +72,18 @@ public class TrainingRecord {
         }
 
         return result.toString();
+    }
+
+    public boolean removeEntry(String name, int day, int month, int year) {
+        for (int i = 0; i < tr.size(); i++) {
+            Entry entry = tr.get(i);
+            if (entry.getName().equals(name) && entry.getDay() == day &&
+                    entry.getMonth() == month && entry.getYear() == year) {
+                tr.remove(i);
+                return true; // Entry removed successfully
+            }
+        }
+        return false; // No matching entry found
     }
 
     // Count the number of entries
