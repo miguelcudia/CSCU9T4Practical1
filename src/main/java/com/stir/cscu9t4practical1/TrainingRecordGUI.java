@@ -130,9 +130,20 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
     public String removeEntry() {
         String message = "Record removed\n";
         String n = name.getText();
-        int m = Integer.parseInt(month.getText());
-        int d = Integer.parseInt(day.getText());
-        int y = Integer.parseInt(year.getText());
+        String dayText = day.getText();
+        String monthText = month.getText();
+        String yearText = year.getText();
+
+        // Check if day, month, and year fields are not empty
+        if (dayText.isEmpty() || monthText.isEmpty() || yearText.isEmpty()) {
+            return "Please enter valid values for day, month, and year";
+        }
+
+        // Parse day, month, and year as integers
+        int m = Integer.parseInt(monthText);
+        int d = Integer.parseInt(dayText);
+        int y = Integer.parseInt(yearText);
+
         // Call TrainingRecord method to remove entry
         boolean removed = myAthletes.removeEntry(n, d, m, y);
         if (!removed) {
