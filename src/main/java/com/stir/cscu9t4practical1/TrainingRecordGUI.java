@@ -38,7 +38,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
     private JTextArea outputArea = new JTextArea(5, 50);
 
     public static void main(String[] args) {
-        new TrainingRecordGUI();
+        TrainingRecordGUI applic = new TrainingRecordGUI();
     } // main
 
     // set up the GUI
